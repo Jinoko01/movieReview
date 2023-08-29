@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "./pages/Loading";
 import axios from "axios";
 import Movie from "./pages/Movie";
+import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,19 +21,19 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div id="appContainer">
       {loading ? (
         <Loading />
       ) : (
-        <div>
-          {movieList.map((ele, i) => {
+        <div id="appMovies">
+          {movieList.map((movie, i) => {
             return (
               <Movie
-                year={ele.year}
-                title={ele.title}
-                summary={ele.summary}
-                poster={ele.medium_cover_image}
-                genres={ele.genres}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
                 key={i}
               />
             );
