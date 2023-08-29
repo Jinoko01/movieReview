@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Loading from "./pages/Loading";
+import axios from "axios";
+import Movie from "./pages/Movie";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating")
+      .then((res) => {
+        setMovieList(res.data.data.movies);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          {movieList.map((ele, i) => {
+            return (
+              <Movie
+                year={ele.year}
+                title={ele.title}
+                summary={ele.summary}
+                poster={ele.medium_cover_image}
+                genres={ele.genres}
+                key={i}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
