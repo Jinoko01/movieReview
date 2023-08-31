@@ -8,7 +8,16 @@ const Movie = ({ year, title, summary, poster, genres }) => {
       <div id="movieData">
         <h3 id="movieTitle">{title}</h3>
         <h5 id="movieYear">{year}</h5>
-        <p id="movieSummary">{summary}</p>
+        <ul id="movieGenres">
+          {genres.map((genre, i) => {
+            return (
+              <li id="movieGenre" key={i}>
+                {genre}
+              </li>
+            );
+          })}
+        </ul>
+        <p id="movieSummary">{summary.slice(0, 180)}...</p>
       </div>
     </div>
   );
