@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div>
-      <Navigation />
+      {loading ? <Loading /> : <Navigation />}
       <div id="homeContainer">
         {loading ? (
           <Loading />
