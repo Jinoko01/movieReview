@@ -5,7 +5,7 @@ import Movie from "../components/Movie";
 import "../style/Home.css";
 import Navigation from "../components/Navigation";
 
-function App() {
+function Home() {
   const [loading, setLoading] = useState(true);
   const [movieList, setMovieList] = useState([]);
 
@@ -48,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
