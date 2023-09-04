@@ -32,7 +32,7 @@ const Detail = () => {
               );
             })}
           </ul>
-          <p id="detailSummary">{summary}...</p>
+          <p id="detailSummary">{summary}</p>
         </div>
       </div>
     </div>
